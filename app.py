@@ -70,7 +70,13 @@ with left:
 
 with right:
     st.subheader("Does wind make power cheaper?")
-    st.scatter_chart(view, x="wind_kmh", y="price_eur_mwh")
+    st.scatter_chart(
+        view[["wind_kmh", "price_eur_mwh"]],
+        x="wind_kmh",
+        y="price_eur_mwh",
+        x_label="Wind speed (km/h)",
+        y_label="Price (€/MWh)",
+    )
     corr = view["wind_kmh"].corr(view["price_eur_mwh"])
     st.caption(f"Correlation between wind speed and price: {corr:.2f} (negative means more wind, lower prices).")
 
